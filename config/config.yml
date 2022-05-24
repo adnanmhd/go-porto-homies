@@ -1,0 +1,17 @@
+app:
+  name: 'go-porto-homies'
+  version: '1.0.0'
+
+http:
+  port: '8009'
+
+logger:
+  log_level: 'debug'
+  rollbar_env: 'go-porto-homies'
+
+mysql:
+  name: 'apps_db'
+  host: 'localhost'
+  port: '3306'
+  username: 'root'
+  password: ''
