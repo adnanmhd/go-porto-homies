@@ -2,14 +2,14 @@ package app
 
 import (
 	"fmt"
+	"github.com/adnanmhd/go-porto-homies/app/controller/http/v1"
+	"github.com/adnanmhd/go-porto-homies/app/repo"
+	"github.com/adnanmhd/go-porto-homies/app/usecase"
 	"os"
 	"os/signal"
 	"syscall"
 
 	"github.com/adnanmhd/go-porto-homies/config"
-	v1 "github.com/adnanmhd/go-porto-homies/internal/controller/http/v1"
-	"github.com/adnanmhd/go-porto-homies/internal/usecase"
-	"github.com/adnanmhd/go-porto-homies/internal/usecase/repo"
 	"github.com/adnanmhd/go-porto-homies/pkg/httpserver"
 	"github.com/adnanmhd/go-porto-homies/pkg/logger"
 	"github.com/adnanmhd/go-porto-homies/pkg/mysql"

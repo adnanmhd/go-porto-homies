@@ -1,10 +1,10 @@
 package main
 
 import (
+	"github.com/adnanmhd/go-porto-homies/app"
 	"log"
 
 	"github.com/adnanmhd/go-porto-homies/config"
-	"github.com/adnanmhd/go-porto-homies/internal/app"
 )
 
 func main() {

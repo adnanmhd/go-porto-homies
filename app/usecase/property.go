@@ -3,15 +3,15 @@ package usecase
 import (
 	"context"
 	"fmt"
-
-	"github.com/adnanmhd/go-porto-homies/internal/entity"
+	"github.com/adnanmhd/go-porto-homies/app/entity"
+	"github.com/adnanmhd/go-porto-homies/app/repo"
 )
 
 type PropertyUseCase struct {
-	repo PropertyRepo
+	repo repo.IPropertyRepo
 }
 
-func New(r PropertyRepo) *PropertyUseCase {
+func New(r repo.IPropertyRepo) *PropertyUseCase {
 	return &PropertyUseCase{
 		repo: r,
 	}

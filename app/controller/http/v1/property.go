@@ -1,10 +1,10 @@
 package v1
 
 import (
+	"github.com/adnanmhd/go-porto-homies/app/entity"
+	"github.com/adnanmhd/go-porto-homies/app/usecase"
 	"net/http"
 
-	"github.com/adnanmhd/go-porto-homies/internal/entity"
-	"github.com/adnanmhd/go-porto-homies/internal/usecase"
 	"github.com/adnanmhd/go-porto-homies/pkg/logger"
 	"github.com/gin-gonic/gin"
 )
@@ -27,9 +27,9 @@ type Response struct {
 func newPropertyRoutes(handler *gin.RouterGroup, p usecase.Property, l logger.Interface) {
 	r := &propertyRoutes{p, l}
 
-	h := handler.Group("/property")
+	h := handler.Group("/properties")
 	{
-		h.GET("properties", r.propertyList)
+		h.GET("", r.propertyList)
 	}
 }
 

@@ -4,8 +4,7 @@ import (
 	"context"
 	"database/sql"
 	"fmt"
-
-	"github.com/adnanmhd/go-porto-homies/internal/entity"
+	"github.com/adnanmhd/go-porto-homies/app/entity"
 )
 
 const _defaultEntityCap = 64

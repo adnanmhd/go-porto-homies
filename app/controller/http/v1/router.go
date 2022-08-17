@@ -2,6 +2,7 @@
 package v1
 
 import (
+	"github.com/adnanmhd/go-porto-homies/app/usecase"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -9,8 +10,6 @@ import (
 	swaggerFiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
 
-	// Swagger docs.
-	"github.com/adnanmhd/go-porto-homies/internal/usecase"
 	"github.com/adnanmhd/go-porto-homies/pkg/logger"
 	_ "github.com/evrone/go-clean-template/docs"
 )
