@@ -27,10 +27,7 @@ type Response struct {
 func newPropertyRoutes(handler *gin.RouterGroup, p usecase.Property, l logger.Interface) {
 	r := &propertyRoutes{p, l}
 
-	h := handler.Group("/properties")
-	{
-		h.GET("", r.propertyList)
-	}
+	handler.GET("properties", r.propertyList)
 }
 
 func (p *propertyRoutes) propertyList(c *gin.Context) {
