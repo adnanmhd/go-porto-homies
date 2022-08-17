@@ -32,15 +32,19 @@ func newPropertyRoutes(handler *gin.RouterGroup, p usecase.Property, l logger.In
 
 func (p *propertyRoutes) propertyList(c *gin.Context) {
 	list, err := p.List(c.Request.Context())
+	var resp entity.Response
 	if err != nil {
 		p.Error(err, "http - v1 - listProperty")
-		errorResponse(c, http.StatusInternalServerError, "database problems")
-
+		resp.Message = "database problems"
+		resp.Status = "error"
+		c.JSON(http.StatusInternalServerError, resp)
 		return
 	}
-	c.JSON(http.StatusOK, Response{
-		Message:          "success",
-		Code:             "0",
-		propertyResponse: propertyResponse{list},
-	})
+	resp = entity.Response{
+		Status:     "0",
+		Message:    "Success",
+		Properties: list,
+	}
+
+	c.JSON(http.StatusOK, resp)
 }
