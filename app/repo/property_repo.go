@@ -19,7 +19,14 @@ func New(db *sql.DB) *PropertyRepo {
 
 func (c *PropertyRepo) GetProperties(ctx context.Context) ([]entity.Property, error) {
 	list := make([]entity.Property, 0, _defaultEntityCap)
-	rec, err := c.Query("select p.id, p.name, p.sub_name, p.address, pc.category_name, p.selling_price, p.renting_price, p.building_area, p.building_floor, p.rooms, IFNULL(p.description, ''), p.is_sold from property p, property_category pc where pc.id = p.property_category and p.is_deleted = 0")
+	rec, err := c.Query("select p.id, p.name, IFNULL(p.description, ''), pt.`type`, p.amenities, p.address, p.city, " +
+		"p.price, IFNULL(p.renting_type, ''), p.status, p.images, p.created_by, p.created_at, " +
+		"IFNULL(pd.rooms, 0), IFNULL(pd.bathroom, 0), IFNULL(pd.surface_area, 0), IFNULL(pd.building_area, 0), IFNULL(pd.year_built, 0), IFNULL(pd.legal_paper, '') " +
+		"from property_type pt, property p " +
+		"left join property_detail pd " +
+		"on pd.property_id = p.id " +
+		"where pt.id = p.property_type_id")
+
 	if err != nil {
 		return nil, fmt.Errorf("PropertyRepo - GetProperties: %w", err)
 
@@ -31,7 +38,11 @@ func (c *PropertyRepo) GetProperties(ctx context.Context) ([]entity.Property, er
 		e.PropertyDetail = entity.PropertyDetail{}
 		e.PropertyType = entity.PropertyType{}
 
-		err = rec.Scan(&e.Id, &e.Name, &e.SubName, &e.Address, &e.PropertyType.Type, &e.Price, &e.Price, &e.PropertyDetail.BuildingArea, &e.PropertyDetail.SurfaceArea, &e.PropertyDetail.Rooms, &e.Description, &e.Status)
+		err = rec.Scan(&e.Id, &e.Name, &e.Description, &e.PropertyType.Type, &e.Amenities, &e.Address, &e.City,
+			&e.Price, &e.RentingType, &e.Status, &e.Images, &e.CreatedBy, &e.CreatedAt,
+			&e.PropertyDetail.Rooms, &e.PropertyDetail.Bathroom, &e.PropertyDetail.SurfaceArea, &e.PropertyDetail.BuildingArea,
+			&e.PropertyDetail.YearBuilt, &e.PropertyDetail.LegalPaper)
+
 		if err != nil {
 			return nil, fmt.Errorf("PropertyRepo - Error Scan: %w", err)
 		}

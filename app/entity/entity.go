@@ -19,8 +19,8 @@ type Property struct {
 	Price          int            `json:"price,omitempty"`
 	Status         string         `json:"status,omitempty"`
 	RentingType    string         `json:"renting_type,omitempty"`
-	Images         []string       `json:"images,omitempty"`
-	Amenities      []string       `json:"amenities,omitempty"`
+	Images         string         `json:"images,omitempty"`
+	Amenities      string         `json:"amenities,omitempty"`
 	PropertyType   PropertyType   `json:"property_type,omitempty"`
 	PropertyDetail PropertyDetail `json:"property_detail,omitempty"`
 	CreatedBy      string         `json:"created_by,omitempty"`
